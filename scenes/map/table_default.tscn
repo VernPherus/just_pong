@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd32s5d0mvdgi"]
+
+[ext_resource type="Script" path="res://scripts/map_scripts/table_default.gd" id="1_f24x7"]
+[ext_resource type="PackedScene" uid="uid://bcxq5n3mld8es" path="res://scenes/objects/pong_ball.tscn" id="2_8je5t"]
+[ext_resource type="PackedScene" uid="uid://b056g6b0b3j6c" path="res://scenes/objects/player_cam.tscn" id="2_hjf8h"]
+[ext_resource type="PackedScene" uid="uid://b7kiwg44yeddo" path="res://scenes/objects/player_paddle.tscn" id="3_1c231"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00il5"]
+size = Vector2(998.125, 7.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugmfo"]
+size = Vector2(20, 529)
+
+[node name="table_default" type="Node2D"]
+script = ExtResource("1_f24x7")
+
+[node name="walls" type="StaticBody2D" parent="."]
+disable_mode = 2
+
+[node name="wall_a" type="CollisionShape2D" parent="walls"]
+position = Vector2(574, 128)
+shape = SubResource("RectangleShape2D_00il5")
+
+[node name="wall_b" type="CollisionShape2D" parent="walls"]
+position = Vector2(574, 496)
+shape = SubResource("RectangleShape2D_00il5")
+
+[node name="out_bounds" type="Area2D" parent="."]
+position = Vector2(40, 64)
+
+[node name="field_left" type="CollisionShape2D" parent="out_bounds"]
+position = Vector2(10, 264)
+shape = SubResource("RectangleShape2D_ugmfo")
+debug_color = Color(0.996078, 0, 0.152941, 0.419608)
+
+[node name="field_right" type="CollisionShape2D" parent="out_bounds"]
+position = Vector2(1065, 268)
+shape = SubResource("RectangleShape2D_ugmfo")
+debug_color = Color(0.996078, 0, 0.152941, 0.419608)
+
+[node name="player_cam" parent="." instance=ExtResource("2_hjf8h")]
+position = Vector2(576, 324)
+
+[node name="player_paddle" parent="." instance=ExtResource("3_1c231")]
+position = Vector2(215, 181)
+
+[node name="pong_ball" parent="." instance=ExtResource("2_8je5t")]
+position = Vector2(564, 249)
+
+[connection signal="body_entered" from="out_bounds" to="." method="_on_out_bounds_body_entered"]
