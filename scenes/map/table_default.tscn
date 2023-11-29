@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd32s5d0mvdgi"]
+[gd_scene load_steps=9 format=3 uid="uid://bd32s5d0mvdgi"]
 
 [ext_resource type="Script" path="res://scripts/map_scripts/table_default.gd" id="1_f24x7"]
 [ext_resource type="PackedScene" uid="uid://bcxq5n3mld8es" path="res://scenes/objects/pong_ball.tscn" id="2_8je5t"]
+[ext_resource type="Texture2D" uid="uid://6ts10l6vrrf3" path="res://assets/table_pong.png" id="2_dlexg"]
 [ext_resource type="PackedScene" uid="uid://b056g6b0b3j6c" path="res://scenes/objects/player_cam.tscn" id="2_hjf8h"]
 [ext_resource type="PackedScene" uid="uid://b7kiwg44yeddo" path="res://scenes/objects/player_paddle.tscn" id="3_1c231"]
+[ext_resource type="PackedScene" uid="uid://cof1fxlevmad4" path="res://scenes/objects/opponent_paddle.tscn" id="6_rjbby"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00il5"]
-size = Vector2(998.125, 7.5)
+size = Vector2(992, 7.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugmfo"]
 size = Vector2(20, 529)
@@ -14,27 +16,33 @@ size = Vector2(20, 529)
 [node name="table_default" type="Node2D"]
 script = ExtResource("1_f24x7")
 
+[node name="TablePong" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(573, 378)
+scale = Vector2(7.875, 8.09375)
+texture = ExtResource("2_dlexg")
+
 [node name="walls" type="StaticBody2D" parent="."]
 disable_mode = 2
 
 [node name="wall_a" type="CollisionShape2D" parent="walls"]
-position = Vector2(574, 128)
+position = Vector2(573, 131)
 shape = SubResource("RectangleShape2D_00il5")
 
 [node name="wall_b" type="CollisionShape2D" parent="walls"]
-position = Vector2(574, 496)
+position = Vector2(573, 624.875)
 shape = SubResource("RectangleShape2D_00il5")
 
 [node name="out_bounds" type="Area2D" parent="."]
 position = Vector2(40, 64)
 
 [node name="field_left" type="CollisionShape2D" parent="out_bounds"]
-position = Vector2(10, 264)
+position = Vector2(24, 314)
 shape = SubResource("RectangleShape2D_ugmfo")
 debug_color = Color(0.996078, 0, 0.152941, 0.419608)
 
 [node name="field_right" type="CollisionShape2D" parent="out_bounds"]
-position = Vector2(1065, 268)
+position = Vector2(1044, 309)
 shape = SubResource("RectangleShape2D_ugmfo")
 debug_color = Color(0.996078, 0, 0.152941, 0.419608)
 
@@ -42,9 +50,12 @@ debug_color = Color(0.996078, 0, 0.152941, 0.419608)
 position = Vector2(576, 324)
 
 [node name="player_paddle" parent="." instance=ExtResource("3_1c231")]
-position = Vector2(215, 181)
+position = Vector2(150, 374)
 
 [node name="pong_ball" parent="." instance=ExtResource("2_8je5t")]
-position = Vector2(564, 249)
+position = Vector2(574, 377)
+
+[node name="opponent_paddle" parent="." instance=ExtResource("6_rjbby")]
+position = Vector2(1004, 381)
 
 [connection signal="body_entered" from="out_bounds" to="." method="_on_out_bounds_body_entered"]

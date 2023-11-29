@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cof1fxlevmad4"]
+[gd_scene load_steps=4 format=3 uid="uid://cof1fxlevmad4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5u2i"]
-size = Vector2(13, 87)
+[ext_resource type="Script" path="res://scripts/paddles/opponent_paddle.gd" id="1_dmkn7"]
+[ext_resource type="Texture2D" uid="uid://wy7pxxay860r" path="res://assets/paddle_pong.png" id="1_gm0md"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njukd"]
+size = Vector2(13, 70.5)
 
 [node name="opponent_paddle" type="CharacterBody2D"]
+script = ExtResource("1_dmkn7")
+
+[node name="PaddlePong" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(8.34465e-07, -2.6226e-06)
+scale = Vector2(0.75, 1.09375)
+texture = ExtResource("1_gm0md")
+flip_h = true
 
 [node name="base" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_t5u2i")
-debug_color = Color(0.72549, 0.47451, 0.0392157, 0.419608)
+shape = SubResource("RectangleShape2D_njukd")
+debug_color = Color(0.760784, 0.45098, 0.00392157, 0.419608)

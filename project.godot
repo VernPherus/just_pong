@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Just Pong"
+config/description="Just a copy of the classic pong game."
 run/main_scene="res://scenes/map/table_default.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://assets/logo/logo_pong.png"
 
 [input]
 
