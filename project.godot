@@ -16,6 +16,11 @@ run/main_scene="res://scenes/map/table_default.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://assets/logo/logo_pong.png"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [input]
 
 move_up={

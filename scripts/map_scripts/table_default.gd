@@ -7,4 +7,4 @@ func _process(delta):
 	pass
 
 func _on_out_bounds_body_entered(body):
-	body.queue_free()
+	$pong_ball.position = Vector2(640, 360)
