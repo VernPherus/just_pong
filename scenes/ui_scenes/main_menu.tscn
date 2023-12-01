@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dtybievq0b7k5"]
+[gd_scene load_steps=2 format=3 uid="uid://dtybievq0b7k5"]
+
+[ext_resource type="Theme" uid="uid://cpqeqbl810anu" path="res://assets/themes/defaultLabel_theme.tres" id="1_d13cq"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -10,15 +12,19 @@ grow_vertical = 2
 
 [node name="background" type="ColorRect" parent="."]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1281.0
+offset_bottom = 719.0
 color = Color(0, 0, 0, 1)
 
 [node name="base" type="MarginContainer" parent="."]
+layout_direction = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -120.5
+offset_right = 120.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -30,21 +36,18 @@ alignment = 1
 
 [node name="title_banner" type="Label" parent="base/div_1"]
 layout_mode = 2
+theme = ExtResource("1_d13cq")
 text = "JUST PONG
 "
 
 [node name="div_2" type="VBoxContainer" parent="base"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 
 [node name="play" type="Button" parent="base/div_2"]
 layout_mode = 2
 text = "PLAY"
-
-[node name="settings" type="Button" parent="base/div_2"]
-layout_mode = 2
-text = "SETTINGS"
 
 [node name="quit" type="Button" parent="base/div_2"]
 layout_mode = 2

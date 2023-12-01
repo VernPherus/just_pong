@@ -8,6 +8,8 @@ func _ready():
 	ball = get_parent().find_child("pong_ball")
 
 func _physics_process(delta):
+	if velocity.x != 0: velocity.x = 0
+	
 	velocity.y = move_toward(0, get_ball_position() * SPEED, SPEED)
 	move_and_slide()
 

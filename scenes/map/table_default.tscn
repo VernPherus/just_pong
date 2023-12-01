@@ -9,7 +9,7 @@
 [ext_resource type="Theme" uid="uid://cpqeqbl810anu" path="res://assets/themes/defaultLabel_theme.tres" id="7_yxh4u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00il5"]
-size = Vector2(883, 7.75)
+size = Vector2(820, 7.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugmfo"]
 size = Vector2(20, 529)
@@ -25,7 +25,7 @@ color = Color(0, 0, 0, 1)
 [node name="TablePong" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(640, 360)
-scale = Vector2(7, 7.195)
+scale = Vector2(6.5, 7.195)
 texture = ExtResource("2_dlexg")
 
 [node name="walls" type="StaticBody2D" parent="."]
@@ -39,15 +39,17 @@ shape = SubResource("RectangleShape2D_00il5")
 position = Vector2(640, 580)
 shape = SubResource("RectangleShape2D_00il5")
 
-[node name="out_bounds" type="Area2D" parent="."]
+[node name="out_bounds_right" type="Area2D" parent="."]
 
-[node name="field_left" type="CollisionShape2D" parent="out_bounds"]
-position = Vector2(185, 360)
+[node name="field_right" type="CollisionShape2D" parent="out_bounds_right"]
+position = Vector2(1070, 360)
 shape = SubResource("RectangleShape2D_ugmfo")
 debug_color = Color(0.996078, 0, 0.152941, 0.419608)
 
-[node name="field_right" type="CollisionShape2D" parent="out_bounds"]
-position = Vector2(1095, 360)
+[node name="out_bounds_left" type="Area2D" parent="."]
+
+[node name="field_left" type="CollisionShape2D" parent="out_bounds_left"]
+position = Vector2(210, 360)
 shape = SubResource("RectangleShape2D_ugmfo")
 debug_color = Color(0.996078, 0, 0.152941, 0.419608)
 
@@ -96,4 +98,22 @@ text = "0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="body_entered" from="out_bounds" to="." method="_on_out_bounds_body_entered"]
+[node name="countdown" type="Label" parent="table_ui"]
+visible = false
+layout_mode = 0
+offset_left = 593.0
+offset_top = 50.0
+offset_right = 689.0
+offset_bottom = 113.0
+theme = ExtResource("7_yxh4u")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="countdown_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="out_bounds_right" to="." method="_on_out_bounds_right_body_entered"]
+[connection signal="body_entered" from="out_bounds_left" to="." method="_on_out_bounds_left_body_entered"]
+[connection signal="timeout" from="countdown_timer" to="." method="_on_countdown_timer_timeout"]

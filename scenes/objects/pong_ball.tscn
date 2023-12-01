@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_uwbov"]
 radius = 12.0
 
-[node name="pong_ball" type="CharacterBody2D"]
+[node name="pong_ball" type="CharacterBody2D" groups=["ball_group"]]
 script = ExtResource("1_voueq")
 
 [node name="BallPong" type="Sprite2D" parent="."]
@@ -18,3 +18,9 @@ texture = ExtResource("2_aa8br")
 texture_filter = 1
 shape = SubResource("CircleShape2D_uwbov")
 debug_color = Color(1, 1, 1, 0.419608)
+
+[node name="ball_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="ball_timer" to="." method="_on_ball_timer_timeout"]
