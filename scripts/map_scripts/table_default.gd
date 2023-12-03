@@ -13,7 +13,15 @@ var opponent_scr = 0
 @onready var cnt_dwn_timer = $countdown_timer
 @onready var timer_text = $table_ui/countdown
 
+@onready var pause_menu = $pause_menu
+@onready var end_menu = $game_end
+@onready var end_msg = $game_end/base_game_end/game_res/winner
+
+func _ready():
+	updateTable()
+
 func _process(delta):
+	check_scr()
 	timer_text.text = str(int(cnt_dwn_timer.time_left + 1))
 
 func _on_out_bounds_right_body_entered(body):
@@ -44,3 +52,25 @@ func resetTable():
 	plyr_pdl.position.x = 265
 	enmy_pdl.position.x = 1280 - 265
 	
+
+func check_scr():
+	if player_scr == 15:
+		get_tree().paused = true
+		end_msg.text = "Congratulations. You Won!"
+		end_menu.show()
+	elif opponent_scr == 15: 
+		get_tree().paused = true
+		end_msg.text = "You Lose!"
+		end_menu.show()
+
+func pause():
+	get_tree().paused = true
+	pause_menu.show()
+
+func unpause():
+	pause_menu.hide()
+	get_tree().paused = false
+
+func reset_game():
+	unpause()
+	get_tree().reload_current_scene()

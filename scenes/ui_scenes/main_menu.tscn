@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtybievq0b7k5"]
+[gd_scene load_steps=5 format=3 uid="uid://dtybievq0b7k5"]
 
+[ext_resource type="Script" path="res://scripts/ui_scripts/main_menu.gd" id="1_4633o"]
 [ext_resource type="Theme" uid="uid://cpqeqbl810anu" path="res://assets/themes/defaultLabel_theme.tres" id="1_d13cq"]
+[ext_resource type="Theme" uid="uid://35detbkv10nw" path="res://assets/themes/defaultButton_theme.tres" id="3_u1eik"]
+[ext_resource type="FontFile" uid="uid://dyekw3f4kn5ru" path="res://assets/fonts/PixelifySans-Regular.ttf" id="3_x6mt1"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4633o")
 
 [node name="background" type="ColorRect" parent="."]
 layout_mode = 2
@@ -19,37 +22,55 @@ color = Color(0, 0, 0, 1)
 [node name="base" type="MarginContainer" parent="."]
 layout_direction = 1
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -120.5
-offset_right = 120.5
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -361.0
+offset_bottom = 359.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="div_1" type="VBoxContainer" parent="base"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 4
 alignment = 1
 
 [node name="title_banner" type="Label" parent="base/div_1"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("1_d13cq")
+theme_override_font_sizes/font_size = 100
 text = "JUST PONG
 "
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="div_2" type="VBoxContainer" parent="base"]
+[node name="text" type="Label" parent="base/div_1"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_x6mt1")
+theme_override_font_sizes/font_size = 40
+text = "* First to 15 points wins"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="play" type="Button" parent="base/div_2"]
+[node name="buttons_div" type="VBoxContainer" parent="base/div_1"]
 layout_mode = 2
-text = "PLAY"
+size_flags_vertical = 3
 
-[node name="quit" type="Button" parent="base/div_2"]
+[node name="play" type="Button" parent="base/div_1/buttons_div"]
 layout_mode = 2
-text = "QUIT
+size_flags_horizontal = 4
+theme = ExtResource("3_u1eik")
+text = "> PLAY"
+
+[node name="quit" type="Button" parent="base/div_1/buttons_div"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_u1eik")
+text = "> QUIT
 "
+
+[connection signal="pressed" from="base/div_1/buttons_div/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="base/div_1/buttons_div/quit" to="." method="_on_quit_pressed"]

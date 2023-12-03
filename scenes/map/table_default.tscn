@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd32s5d0mvdgi"]
+[gd_scene load_steps=13 format=3 uid="uid://bd32s5d0mvdgi"]
 
 [ext_resource type="Script" path="res://scripts/map_scripts/table_default.gd" id="1_f24x7"]
 [ext_resource type="PackedScene" uid="uid://bcxq5n3mld8es" path="res://scenes/objects/pong_ball.tscn" id="2_8je5t"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b7kiwg44yeddo" path="res://scenes/objects/player_paddle.tscn" id="3_1c231"]
 [ext_resource type="PackedScene" uid="uid://cof1fxlevmad4" path="res://scenes/objects/opponent_paddle.tscn" id="6_rjbby"]
 [ext_resource type="Theme" uid="uid://cpqeqbl810anu" path="res://assets/themes/defaultLabel_theme.tres" id="7_yxh4u"]
+[ext_resource type="Theme" uid="uid://35detbkv10nw" path="res://assets/themes/defaultButton_theme.tres" id="8_anwps"]
+[ext_resource type="PackedScene" uid="uid://ohdjruucouwk" path="res://scenes/ui_scenes/pause_menu.tscn" id="9_il3ni"]
+[ext_resource type="PackedScene" uid="uid://lgscmvgyswl6" path="res://scenes/ui_scenes/game_end.tscn" id="10_53l3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00il5"]
 size = Vector2(820, 7.75)
@@ -110,10 +113,33 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="pause" type="Button" parent="table_ui"]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 614.0
+offset_right = 734.0
+offset_bottom = 693.0
+theme = ExtResource("8_anwps")
+theme_override_font_sizes/font_size = 40
+text = "> PAUSE"
+
+[node name="pause_menu" parent="." instance=ExtResource("9_il3ni")]
+visible = false
+
+[node name="game_end" parent="." instance=ExtResource("10_53l3o")]
+visible = false
+
 [node name="countdown_timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [connection signal="body_entered" from="out_bounds_right" to="." method="_on_out_bounds_right_body_entered"]
 [connection signal="body_entered" from="out_bounds_left" to="." method="_on_out_bounds_left_body_entered"]
+[connection signal="pressed" from="table_ui/pause" to="." method="pause"]
+[connection signal="pressed" from="pause_menu/base/title_div/btns_div/resume" to="." method="unpause"]
+[connection signal="pressed" from="pause_menu/base/title_div/btns_div/restart" to="." method="reset_game"]
+[connection signal="pressed" from="game_end/base_game_end/game_res/btns_div/reset" to="." method="reset_game"]
 [connection signal="timeout" from="countdown_timer" to="." method="_on_countdown_timer_timeout"]
+
+[editable path="pause_menu"]
+[editable path="game_end"]

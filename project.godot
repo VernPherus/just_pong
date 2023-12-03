@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Just Pong"
 config/description="Just a copy of the classic pong game."
-run/main_scene="res://scenes/map/table_default.tscn"
+run/main_scene="res://scenes/ui_scenes/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://assets/logo/logo_pong.png"
 

@@ -13,11 +13,6 @@ func _physics_process(delta):
 	if not collision: return
 	velocity = velocity.bounce(collision.get_normal())
 
-
-func _on_ball_timer_timeout():
-	velocity.x *= 1.1
-	velocity.y *= 1.1
-
 func stop_ball():
 	speed = 0.0
 
@@ -26,3 +21,7 @@ func restart_ball():
 	velocity.x = [-1, 1][randi() % 2]
 	velocity.y = [-0.8, 0.8][randi() % 2]
 	
+
+func _on_ball_timer_timeout():
+	velocity.x *= 1.1
+	velocity.y *= 1.1

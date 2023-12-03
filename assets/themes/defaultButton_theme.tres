@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://35detbkv10nw"]
+
+[ext_resource type="FontFile" uid="uid://dyekw3f4kn5ru" path="res://assets/fonts/PixelifySans-Regular.ttf" id="1_tlb5i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nhoc"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg0e8"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5f6mm"]
+bg_color = Color(0.196078, 0.803922, 0.196078, 1)
+
+[resource]
+default_font = ExtResource("1_tlb5i")
+default_font_size = 65
+Button/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_tlb5i")
+Button/styles/hover = SubResource("StyleBoxFlat_3nhoc")
+Button/styles/normal = SubResource("StyleBoxFlat_dg0e8")
+Button/styles/pressed = SubResource("StyleBoxFlat_5f6mm")
